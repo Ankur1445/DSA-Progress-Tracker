@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSA Practice Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <h1>DSA Practice Tracker</h1>
+        <p class="tagline">Arrays to BST &mdash; 156 problems, tracked locally.</p>
+      </div>
+
+      <section class="dashboard" aria-label="Progress summary">
+        <div class="stat-card">
+          <span class="stat-value" id="totalCount">0</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="solvedCount">0</span>
+          <span class="stat-label">Solved</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="remainingCount">0</span>
+          <span class="stat-label">Remaining</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="percentCount">0%</span>
+          <span class="stat-label">Completed</span>
+        </div>
+      </section>
+
+      <div class="progress-track" role="progressbar" aria-label="Overall completion" aria-valuemin="0" aria-valuemax="100" id="progressTrack">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <section class="controls" aria-label="Filters">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search a problem by name..."
+          aria-label="Search problems"
+        />
+      </div>
+
+      <div class="difficulty-filters" id="difficultyFilters">
+        <button class="filter-btn active" data-difficulty="All">All</button>
+        <button class="filter-btn" data-difficulty="Easy">Easy</button>
+        <button class="filter-btn" data-difficulty="Medium">Medium</button>
+        <button class="filter-btn" data-difficulty="Hard">Hard</button>
+      </div>
+    </section>
+
+    <section class="topics-section" aria-label="Topic-wise problems">
+      <div id="topicsContainer"></div>
+
+      <p class="empty-state" id="emptyState" hidden>
+        No problems match your search or filter.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with HTML, CSS &amp; vanilla JavaScript. Progress is saved in your browser.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

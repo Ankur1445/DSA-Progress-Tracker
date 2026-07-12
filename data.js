@@ -1,0 +1,240 @@
+// ============================
+// PROBLEM DATA
+// ============================
+// Each topic has a title and a list of problems.
+// Each problem has: a unique id, its title, difficulty, and the
+// pattern/technique used to solve it.
+//
+// This is the ONLY data the app runs on. script.js reads this array,
+// builds the UI from it, and never hardcodes problems in HTML.
+
+const TOPICS = [
+  {
+    id: "01",
+    title: "Arrays",
+    problems: [
+      { id: 1, title: "Two Sum", difficulty: "Easy", pattern: "Hashing / Two-pass" },
+      { id: 2, title: "Remove Duplicates from Sorted Array", difficulty: "Easy", pattern: "Two Pointers" },
+      { id: 3, title: "Best Time to Buy and Sell Stock", difficulty: "Easy", pattern: "Greedy / Single-pass" },
+      { id: 4, title: "Majority Element", difficulty: "Easy", pattern: "Boyer-Moore Voting" },
+      { id: 5, title: "Move Zeroes", difficulty: "Easy", pattern: "Two Pointers" },
+      { id: 6, title: "Missing Number", difficulty: "Easy", pattern: "XOR / Gauss Math" },
+      { id: 7, title: "Max Consecutive Ones", difficulty: "Easy", pattern: "Sliding Window" },
+      { id: 8, title: "Find All Numbers Disappeared in Array", difficulty: "Easy", pattern: "Cyclic Sort / In-place" },
+      { id: 9, title: "Maximum Subarray", difficulty: "Medium", pattern: "Kadane's Algorithm" },
+      { id: 10, title: "Product of Array Except Self", difficulty: "Medium", pattern: "Prefix & Suffix Product" },
+      { id: 11, title: "Merge Intervals", difficulty: "Medium", pattern: "Sorting + Merge" },
+      { id: 12, title: "Sort Colors", difficulty: "Medium", pattern: "Dutch National Flag" },
+      { id: 13, title: "Rotate Array", difficulty: "Medium", pattern: "Reversal Trick" },
+      { id: 14, title: "Find the Duplicate Number", difficulty: "Medium", pattern: "Floyd's Cycle / Cyclic Sort" },
+      { id: 15, title: "Subarray Sum Equals K", difficulty: "Medium", pattern: "Prefix Sum + HashMap" },
+      { id: 16, title: "Two Sum II — Input Array Is Sorted", difficulty: "Medium", pattern: "Two Pointers" },
+      { id: 17, title: "3Sum", difficulty: "Medium", pattern: "Two Pointers + Sort" },
+      { id: 18, title: "4Sum", difficulty: "Medium", pattern: "Two Pointers + Sort" },
+      { id: 19, title: "First Missing Positive", difficulty: "Hard", pattern: "Cyclic Sort / In-place Hash" },
+      { id: 20, title: "Trapping Rain Water", difficulty: "Hard", pattern: "Two Pointers / Prefix Max" },
+      { id: 21, title: "Container With Most Water", difficulty: "Medium", pattern: "Two Pointers" },
+      { id: 22, title: "Longest Consecutive Sequence", difficulty: "Medium", pattern: "HashSet / Union Find" },
+    ]
+  },
+  {
+    id: "02",
+    title: "Strings",
+    problems: [
+      { id: 23, title: "Valid Palindrome", difficulty: "Easy", pattern: "Two Pointers" },
+      { id: 24, title: "Longest Common Prefix", difficulty: "Easy", pattern: "Vertical Scan" },
+      { id: 25, title: "Reverse String", difficulty: "Easy", pattern: "Two Pointers" },
+      { id: 26, title: "Valid Anagram", difficulty: "Easy", pattern: "Frequency Count" },
+      { id: 27, title: "First Unique Character in String", difficulty: "Easy", pattern: "Hashing" },
+      { id: 28, title: "Find the Index of First Occurrence", difficulty: "Easy", pattern: "KMP / Built-in" },
+      { id: 29, title: "Longest Substring Without Repeating Chars", difficulty: "Medium", pattern: "Sliding Window" },
+      { id: 30, title: "Group Anagrams", difficulty: "Medium", pattern: "Sorted-key Hashing" },
+      { id: 31, title: "Longest Palindromic Substring", difficulty: "Medium", pattern: "Palindrome Expand / DP" },
+      { id: 32, title: "Permutation in String", difficulty: "Medium", pattern: "Sliding Window + Freq" },
+      { id: 33, title: "Multiply Strings", difficulty: "Medium", pattern: "Grade-school Multiplication" },
+      { id: 34, title: "Reverse Words in a String", difficulty: "Medium", pattern: "Two Pointers" },
+      { id: 35, title: "Palindromic Substrings", difficulty: "Medium", pattern: "Expand Around Center" },
+      { id: 36, title: "Find All Anagrams in a String", difficulty: "Medium", pattern: "Sliding Window" },
+      { id: 37, title: "Longest Repeating Character Replacement", difficulty: "Medium", pattern: "Sliding Window" },
+      { id: 38, title: "Minimum Window Substring", difficulty: "Hard", pattern: "Sliding Window" },
+      { id: 39, title: "Regular Expression Matching", difficulty: "Hard", pattern: "DP" },
+      { id: 40, title: "Longest Valid Parentheses", difficulty: "Hard", pattern: "Stack / DP" },
+      { id: 41, title: "String to Integer (atoi)", difficulty: "Medium", pattern: "Edge-case Parsing" },
+      { id: 42, title: "Valid Parentheses", difficulty: "Easy", pattern: "Stack" },
+    ]
+  },
+  {
+    id: "03",
+    title: "Bit Manipulation",
+    problems: [
+      { id: 43, title: "Single Number", difficulty: "Easy", pattern: "XOR" },
+      { id: 44, title: "Number of 1 Bits", difficulty: "Easy", pattern: "Brian Kernighan / bin()" },
+      { id: 45, title: "Counting Bits", difficulty: "Easy", pattern: "DP + LSB trick" },
+      { id: 46, title: "Missing Number", difficulty: "Easy", pattern: "XOR / Gauss" },
+      { id: 47, title: "Power of Two", difficulty: "Easy", pattern: "n & (n-1) == 0" },
+      { id: 48, title: "Find the Difference", difficulty: "Easy", pattern: "XOR" },
+      { id: 49, title: "Subsets", difficulty: "Medium", pattern: "Bitmask Enumeration" },
+      { id: 50, title: "Reverse Bits", difficulty: "Medium", pattern: "Bit Shifting" },
+      { id: 51, title: "Single Number II", difficulty: "Medium", pattern: "Bit Counting mod 3" },
+      { id: 52, title: "Single Number III", difficulty: "Medium", pattern: "XOR + Partition" },
+      { id: 53, title: "Bitwise AND of Numbers Range", difficulty: "Medium", pattern: "Common Prefix" },
+      { id: 54, title: "Sum of Two Integers", difficulty: "Medium", pattern: "XOR + Carry" },
+    ]
+  },
+  {
+    id: "04",
+    title: "HashMap & HashSet",
+    problems: [
+      { id: 55, title: "Contains Duplicate", difficulty: "Easy", pattern: "HashSet" },
+      { id: 56, title: "Two Sum", difficulty: "Easy", pattern: "Complement HashMap" },
+      { id: 57, title: "Word Pattern", difficulty: "Easy", pattern: "Bijective Mapping" },
+      { id: 58, title: "Ransom Note", difficulty: "Easy", pattern: "Frequency Count" },
+      { id: 59, title: "Intersection of Two Arrays", difficulty: "Easy", pattern: "HashSet" },
+      { id: 60, title: "Logger Rate Limiter", difficulty: "Easy", pattern: "HashMap Timestamp" },
+      { id: 61, title: "Group Anagrams", difficulty: "Medium", pattern: "Sorted-key Grouping" },
+      { id: 62, title: "Longest Consecutive Sequence", difficulty: "Medium", pattern: "HashSet Boundary Check" },
+      { id: 63, title: "4Sum II", difficulty: "Medium", pattern: "Two-pass HashMap" },
+      { id: 64, title: "Design Twitter", difficulty: "Medium", pattern: "HashMap + Heap" },
+      { id: 65, title: "Insert Delete GetRandom O(1)", difficulty: "Medium", pattern: "HashMap + List" },
+      { id: 66, title: "LRU Cache", difficulty: "Medium", pattern: "HashMap + Doubly Linked List" },
+    ]
+  },
+  {
+    id: "05",
+    title: "Sorting",
+    problems: [
+      { id: 67, title: "Sort an Array", difficulty: "Medium", pattern: "Merge Sort / Quick Sort" },
+      { id: 68, title: "Merge Intervals", difficulty: "Medium", pattern: "Sort + Sweep" },
+      { id: 69, title: "Largest Number", difficulty: "Medium", pattern: "Custom Comparator" },
+      { id: 70, title: "Sort List", difficulty: "Medium", pattern: "Merge Sort on Linked List" },
+      { id: 71, title: "H-Index", difficulty: "Medium", pattern: "Sorting / Counting Sort" },
+      { id: 72, title: "Count of Smaller After Self", difficulty: "Hard", pattern: "Merge Sort / Fenwick Tree" },
+      { id: 73, title: "Reverse Pairs", difficulty: "Hard", pattern: "Merge Sort" },
+    ]
+  },
+  {
+    id: "06",
+    title: "Binary Search",
+    problems: [
+      { id: 74, title: "Binary Search", difficulty: "Easy", pattern: "Classic" },
+      { id: 75, title: "Search Insert Position", difficulty: "Easy", pattern: "Classic BS" },
+      { id: 76, title: "First Bad Version", difficulty: "Easy", pattern: "BS on Answer" },
+      { id: 77, title: "Guess Number Higher or Lower", difficulty: "Easy", pattern: "Classic" },
+      { id: 78, title: "Search in Rotated Sorted Array", difficulty: "Medium", pattern: "Modified BS" },
+      { id: 79, title: "Find First and Last Position", difficulty: "Medium", pattern: "Two Binary Searches" },
+      { id: 80, title: "Search a 2D Matrix", difficulty: "Medium", pattern: "Flatten + BS" },
+      { id: 81, title: "Find Peak Element", difficulty: "Medium", pattern: "Binary Search" },
+      { id: 82, title: "Koko Eating Bananas", difficulty: "Medium", pattern: "BS on Answer" },
+      { id: 83, title: "Capacity to Ship Packages in D Days", difficulty: "Medium", pattern: "BS on Answer" },
+      { id: 84, title: "Find Minimum in Rotated Array", difficulty: "Medium", pattern: "Modified BS" },
+      { id: 85, title: "Single Element in Sorted Array", difficulty: "Medium", pattern: "BS Parity Check" },
+      { id: 86, title: "Median of Two Sorted Arrays", difficulty: "Hard", pattern: "BS on Partition" },
+      { id: 87, title: "Split Array Largest Sum", difficulty: "Hard", pattern: "BS on Answer" },
+    ]
+  },
+  {
+    id: "07",
+    title: "Linked List",
+    problems: [
+      { id: 88, title: "Reverse Linked List", difficulty: "Easy", pattern: "Iterative / Recursive" },
+      { id: 89, title: "Linked List Cycle", difficulty: "Easy", pattern: "Fast & Slow Pointers" },
+      { id: 90, title: "Merge Two Sorted Lists", difficulty: "Easy", pattern: "Two Pointers + Dummy" },
+      { id: 91, title: "Remove Linked List Elements", difficulty: "Easy", pattern: "Dummy Node" },
+      { id: 92, title: "Middle of the Linked List", difficulty: "Easy", pattern: "Fast & Slow" },
+      { id: 93, title: "Remove Nth Node from End", difficulty: "Medium", pattern: "Two Pointers + Dummy" },
+      { id: 94, title: "Add Two Numbers", difficulty: "Medium", pattern: "Dummy Node + Carry" },
+      { id: 95, title: "Linked List Cycle II", difficulty: "Medium", pattern: "Floyd + Math" },
+      { id: 96, title: "Reverse Linked List II", difficulty: "Medium", pattern: "In-place Sublist Reversal" },
+      { id: 97, title: "Copy List with Random Pointer", difficulty: "Medium", pattern: "HashMap / Interleaving" },
+      { id: 98, title: "Sort List", difficulty: "Medium", pattern: "Merge Sort on List" },
+      { id: 99, title: "Intersection of Two Linked Lists", difficulty: "Easy", pattern: "Two Pointers" },
+      { id: 100, title: "Palindrome Linked List", difficulty: "Easy", pattern: "Fast-Slow + Reverse" },
+      { id: 101, title: "Reverse Nodes in k-Group", difficulty: "Hard", pattern: "In-place Sublist Reversal" },
+      { id: 102, title: "Merge K Sorted Lists", difficulty: "Hard", pattern: "Heap / Divide & Conquer" },
+    ]
+  },
+  {
+    id: "08",
+    title: "Stack",
+    problems: [
+      { id: 103, title: "Valid Parentheses", difficulty: "Easy", pattern: "Stack + Map" },
+      { id: 104, title: "Implement Queue using Stacks", difficulty: "Easy", pattern: "Two Stacks" },
+      { id: 105, title: "Next Greater Element I", difficulty: "Easy", pattern: "Monotonic Stack" },
+      { id: 106, title: "Min Stack", difficulty: "Medium", pattern: "Auxiliary Stack" },
+      { id: 107, title: "Daily Temperatures", difficulty: "Medium", pattern: "Monotonic Stack" },
+      { id: 108, title: "Next Greater Element II (Circular)", difficulty: "Medium", pattern: "Monotonic Stack" },
+      { id: 109, title: "Evaluate Reverse Polish Notation", difficulty: "Medium", pattern: "Stack" },
+      { id: 110, title: "Decode String", difficulty: "Medium", pattern: "Stack" },
+      { id: 111, title: "Score of Parentheses", difficulty: "Medium", pattern: "Stack" },
+      { id: 112, title: "Largest Rectangle in Histogram", difficulty: "Hard", pattern: "Monotonic Stack" },
+      { id: 113, title: "Maximal Rectangle", difficulty: "Hard", pattern: "Stack on each row" },
+      { id: 114, title: "Max Stack", difficulty: "Hard", pattern: "Two Stacks / Sorted Set" },
+    ]
+  },
+  {
+    id: "09",
+    title: "Queue & Deque",
+    problems: [
+      { id: 115, title: "Number of Recent Calls", difficulty: "Easy", pattern: "Queue Sliding Window" },
+      { id: 116, title: "Design Circular Queue", difficulty: "Medium", pattern: "Array + Pointers" },
+      { id: 117, title: "Design Circular Deque", difficulty: "Medium", pattern: "Deque Design" },
+      { id: 118, title: "Reveal Cards in Increasing Order", difficulty: "Medium", pattern: "Queue Simulation" },
+      { id: 119, title: "Shortest Subarray with Sum >= K", difficulty: "Hard", pattern: "Monotonic Deque + Prefix" },
+      { id: 120, title: "Sliding Window Maximum", difficulty: "Hard", pattern: "Monotonic Deque" },
+    ]
+  },
+  {
+    id: "10",
+    title: "Recursion",
+    problems: [
+      { id: 121, title: "Fibonacci Number", difficulty: "Easy", pattern: "Recursion / Memoization" },
+      { id: 122, title: "Reverse String", difficulty: "Easy", pattern: "Tail Recursion" },
+      { id: 123, title: "Pow(x, n)", difficulty: "Medium", pattern: "Fast Power / D&C" },
+      { id: 124, title: "K-th Symbol in Grammar", difficulty: "Medium", pattern: "Recursive Pattern" },
+      { id: 125, title: "Different Ways to Add Parentheses", difficulty: "Medium", pattern: "Divide & Conquer" },
+      { id: 126, title: "Unique Binary Search Trees II", difficulty: "Medium", pattern: "D&C + Memoization" },
+      { id: 127, title: "Integer to English Words", difficulty: "Hard", pattern: "Recursive Chunking" },
+      { id: 128, title: "Strobogrammatic Number II", difficulty: "Medium", pattern: "Recursive Build" },
+    ]
+  },
+  {
+    id: "11",
+    title: "Trees (Complete)",
+    problems: [
+      { id: 129, title: "Maximum Depth of Binary Tree", difficulty: "Easy", pattern: "DFS" },
+      { id: 130, title: "Invert Binary Tree", difficulty: "Easy", pattern: "DFS / BFS" },
+      { id: 131, title: "Diameter of Binary Tree", difficulty: "Easy", pattern: "DFS Post-order" },
+      { id: 132, title: "Subtree of Another Tree", difficulty: "Easy", pattern: "DFS" },
+      { id: 133, title: "Path Sum", difficulty: "Easy", pattern: "DFS" },
+      { id: 134, title: "Binary Tree Level Order Traversal", difficulty: "Medium", pattern: "BFS" },
+      { id: 135, title: "Zigzag Level Order Traversal", difficulty: "Medium", pattern: "BFS + Deque" },
+      { id: 136, title: "Construct BT from Pre+Inorder", difficulty: "Medium", pattern: "Divide & Conquer" },
+      { id: 137, title: "Lowest Common Ancestor", difficulty: "Medium", pattern: "DFS" },
+      { id: 138, title: "Binary Tree Right Side View", difficulty: "Medium", pattern: "BFS / DFS" },
+      { id: 139, title: "Flatten BT to Linked List", difficulty: "Medium", pattern: "Morris / Reverse Post-order" },
+      { id: 140, title: "Maximum Width of Binary Tree", difficulty: "Medium", pattern: "BFS + Indexing" },
+      { id: 141, title: "Serialize and Deserialize BT", difficulty: "Hard", pattern: "BFS / DFS" },
+      { id: 142, title: "Binary Tree Maximum Path Sum", difficulty: "Hard", pattern: "DFS Post-order" },
+      { id: 143, title: "Recover Binary Search Tree", difficulty: "Hard", pattern: "Morris Traversal" },
+      { id: 144, title: "Vertical Order Traversal of BT", difficulty: "Hard", pattern: "BFS + Sorting" },
+      { id: 145, title: "Count Complete Tree Nodes", difficulty: "Medium", pattern: "Binary Search on Tree" },
+      { id: 146, title: "Count Good Nodes in BT", difficulty: "Medium", pattern: "DFS Pre-order" },
+    ]
+  },
+  {
+    id: "12",
+    title: "BST",
+    problems: [
+      { id: 147, title: "Search in a BST", difficulty: "Easy", pattern: "Recursive Search" },
+      { id: 148, title: "Insert into a BST", difficulty: "Medium", pattern: "Recursive Insert" },
+      { id: 149, title: "Validate Binary Search Tree", difficulty: "Medium", pattern: "Inorder / Range Check" },
+      { id: 150, title: "Kth Smallest Element in a BST", difficulty: "Medium", pattern: "Inorder Traversal" },
+      { id: 151, title: "Delete Node in a BST", difficulty: "Medium", pattern: "Find Successor" },
+      { id: 152, title: "Inorder Successor in BST", difficulty: "Medium", pattern: "BST Property" },
+      { id: 153, title: "Convert BST to Greater Tree", difficulty: "Medium", pattern: "Reverse Inorder" },
+      { id: 154, title: "Binary Search Tree Iterator", difficulty: "Medium", pattern: "Stack-based Inorder" },
+      { id: 155, title: "Convert Sorted Array to BST", difficulty: "Easy", pattern: "Divide & Conquer" },
+      { id: 156, title: "Trim a BST", difficulty: "Medium", pattern: "Recursive Trim" },
+    ]
+  },
+];
