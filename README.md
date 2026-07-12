@@ -35,7 +35,7 @@ No frameworks, no libraries. Just wanted to get the fundamentals right first.
 Just clone the repo and open `index.html` in your browser. That's it, no build step, no installs.
 
 ```bash
-git clone https://github.com/Ankur_1445/DSA-Progress-Tracker.git
+git clone https://github.com/Ankur1445/DSA-Progress-Tracker.git
 cd DSA-Progress-Tracker
 ```
 
