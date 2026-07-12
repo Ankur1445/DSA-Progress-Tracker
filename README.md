@@ -36,7 +36,7 @@ Just clone the repo and open `index.html` in your browser. That's it, no build s
 
 ```bash
 git clone https://github.com/Ankur_1445/DSA-Progress-Tracker.git
-cd dsa-practice-tracker
+cd DSA-Progress-Tracker
 ```
 
 Then open `index.html` (or use the Live Server extension in VS Code).
