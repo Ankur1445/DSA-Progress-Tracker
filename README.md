@@ -1,5 +1,5 @@
 # DSA Practice Tracker
-
+Live Link: https://dsa-progress-tracker-hkt.netlify.app/
 A simple web app to track my progress while practicing DSA problems, from Arrays all the way to BST (156 problems in total).
 
 I built this because I kept solving problems on LeetCode but had no clean way to track which topics I had actually covered and which ones I still needed to revise. So I made my own tracker.
@@ -36,7 +36,6 @@ Just clone the repo and open `index.html` in your browser. That's it, no build s
 
 ```bash
 git clone https://github.com/Ankur1445/DSA-Progress-Tracker.git
-cd DSA-Progress-Tracker
 ```
 
 Then open `index.html` (or use the Live Server extension in VS Code).
